@@ -14,5 +14,10 @@ namespace InventoryTracker.Application.Interfaces
         Task UpdateAsync(Inventory inventory);
 
         Task SaveAsync();
+
+        Task DeleteAsync(Inventory item);
+
+       
+        Task<List<Inventory>> GetLowStockAsync();
     }
 }

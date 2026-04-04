@@ -1,7 +1,4 @@
 ﻿using InventoryTracker.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InventoryTracker.Application.Interfaces
 {
@@ -13,6 +10,14 @@ namespace InventoryTracker.Application.Interfaces
 
         Task AddStockAsync(StockDto dto);
 
+
         Task RemoveStockAsync(StockDto dto);
+
+        Task<InventoryDto> GetByIdAsync(int id);
+        Task UpdateAsync(UpdateInventoryDto dto);
+        Task DeleteAsync(int id);
+
+        Task<InventoryReportDto> GetReportAsync();
+        Task<List<LowStockItemDto>> GetLowStockAsync();
     }
 }

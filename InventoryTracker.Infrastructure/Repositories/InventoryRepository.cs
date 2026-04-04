@@ -41,5 +41,20 @@ namespace InventoryTracker.Infrastructure.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+
+        public async Task DeleteAsync(Inventory item)
+        {
+            _context.Inventories.Remove(item);
+            await Task.CompletedTask;
+        }
+
+
+        public async Task<List<Inventory>> GetLowStockAsync()
+        {
+            return await _context.Inventories
+                .Where(x => x.Quantity < x.Threshold)
+                .ToListAsync();
+        }
     }
 }

@@ -12,5 +12,8 @@ namespace InventoryTracker.Infrastructure.Data
 
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        
+        public DbSet<User> Users { get; set; }
+        public DbSet<Alert> Alerts { get; set; }
     }
 }
