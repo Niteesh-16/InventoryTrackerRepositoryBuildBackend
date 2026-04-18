@@ -14,6 +14,16 @@ namespace InventoryTracker.Infrastructure.Data
         public DbSet<Transaction> Transactions { get; set; }
         
         public DbSet<User> Users { get; set; }
-       
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique(); //this makes sure that i put unique index username and making it unique    
+        }
     }
 }

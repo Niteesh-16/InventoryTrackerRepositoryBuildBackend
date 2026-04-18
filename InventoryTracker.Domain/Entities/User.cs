@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
+using System.ComponentModel.DataAnnotations;
 namespace InventoryTracker.Domain.Entities
 {
     public class User
     {
         public int Id { get; set; }
 
+        [Required]
         public String Username { get; set; }
 
         public String Password { get; set; }

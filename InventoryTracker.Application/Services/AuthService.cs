@@ -24,12 +24,24 @@ namespace InventoryTracker.Application.Services
 
         public async Task RegisterAsync(RegisterDto dto)
         {
+            var existingUser = await _userRepo.GetByUsernameAsync(dto.Username);
+
+            if (existingUser != null)
+            {
+                throw new Exception("Username already exists");
+            }
+
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
+            var adminSecret = _config["AdminSettings:SecretCode"];
+
+            string role = dto.AdminCode == adminSecret ? "Admin" : "Staff";
+
             var user = new User
             {
                 Username = dto.Username,
                 Password = hashedPassword,
-                Role = dto.Role
+                Role = role
             };
 
             await _userRepo.AddAsync(user);
